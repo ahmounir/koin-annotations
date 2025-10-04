@@ -1,0 +1,5 @@
+jitpack:
+  build:
+    gradle:
+      - projects/koin-annotations
+      - projects/koin-ksp-compiler
