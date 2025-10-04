@@ -50,8 +50,8 @@ kotlin {
 }
 
 rootProject.the<NodeJsRootExtension>().apply {
-    nodeVersion = "21.0.0-v8-canary202309143a48826a08"
-    nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
+    nodeVersion = "20.10.0"
+    nodeDownloadBaseUrl = "https://nodejs.org/dist"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask>().configureEach {
