@@ -73,8 +73,9 @@ class KoinCodeGenerator(
         logger.logging("generate module ${module.name}")
 
         checkAlreadyGenerated(module)
+        val hasNewDefinitions = module.definitions.any { resolver.getResolution(it) == null }
 
-        if (module.alreadyGenerated == false){
+        if (module.alreadyGenerated == false || hasNewDefinitions){
 
             val definitionsCount = module.definitions.size
             if (definitionsCount > MAX_MODULE_DEFINITIONS) {
