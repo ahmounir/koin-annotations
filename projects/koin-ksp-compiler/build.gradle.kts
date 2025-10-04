@@ -26,4 +26,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     }
 }
 
+group = "com.github.ahmounir"
+version = "2.1.0-Fixed"
 apply(from = file("../gradle/publish.gradle.kts"))

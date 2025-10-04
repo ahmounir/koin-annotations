@@ -5,6 +5,9 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
 }
 
+group = "com.github.ahmounir"
+version = "2.1.0-Fixed"
+
 kotlin {
     jvm {
         withJava()

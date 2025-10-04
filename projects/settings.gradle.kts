@@ -20,5 +20,5 @@ include(
     // Core
     ":koin-annotations",
     ":koin-ksp-compiler",
-    ":koin-annotations-bom",
+    ":koin-annotations-bom"
 )
