@@ -39,7 +39,7 @@ allprojects {
 
     val koinAnnotationsVersion: String by project
 
-    group = "io.insert-koin"
+    group = "io.github.ahmounir"  // Changed to your GitHub namespace
     version = koinAnnotationsVersion
 
     apply(plugin = "org.jetbrains.dokka")

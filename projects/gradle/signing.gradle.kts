@@ -20,11 +20,26 @@ if (isReleaseBuild()) {
     }
 
     configure<SigningExtension> {
-        useInMemoryPgpKeys(
-            getSigningKeyId(),
-            getSigningKey(),
-            getSigningPassword(),
-        )
+        val key = getSigningKey()
+        if (key.isNotBlank()) {
+            println("Using in-memory signing with key ID: ${key}")
+            // Use in-memory signing if key is provided
+            useInMemoryPgpKeys(
+                getSigningKeyId(),
+                key,
+                getSigningPassword(),
+            )
+        } else {
+
+            // Fallback to GPG command with explicit passphrase
+            useGpgCmd()
+            // Configure GPG to use the passphrase from properties
+            val password = getSigningPassword()
+            if (password.isNotBlank()) {
+                extra["signing.gnupg.keyName"] = getSigningKeyId()
+                extra["signing.gnupg.passphrase"] = password
+            }
+        }
 
         sign(extensions.getByType<PublishingExtension>().publications)
     }
