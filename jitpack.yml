@@ -1,0 +1,12 @@
+jdk:
+  - openjdk17
+
+before_install:
+  - echo "Building Koin Annotations from projects subdirectory..."
+
+install:
+  - cd projects
+  - ./gradlew :koin-annotations:publishToMavenLocal :koin-ksp-compiler:publishToMavenLocal -x test --no-daemon --no-parallel --stacktrace
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4096m -Dfile.encoding=UTF-8 -Dorg.gradle.daemon=false -Dorg.gradle.caching=false -Dorg.gradle.configuration-cache=false -Dorg.gradle.parallel=false"

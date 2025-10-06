@@ -1,11 +1,11 @@
 apply(plugin = "maven-publish")
 
-val javadocJar = tasks.getByName("javadocJar")
+val javadocJar = tasks.findByName("javadocJar")
 
 configure<PublishingExtension> {
     publications {
         withType<MavenPublication> {
-            artifact(javadocJar)
+            if (javadocJar != null) artifact(javadocJar)
             pom {
                 name.set("Koin")
                 description.set("KOIN - Kotlin simple Dependency Injection Framework")
