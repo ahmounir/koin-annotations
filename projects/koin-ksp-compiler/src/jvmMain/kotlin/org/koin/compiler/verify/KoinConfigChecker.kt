@@ -313,7 +313,12 @@ class KoinConfigChecker(val logger: KSPLogger, val tagResolver: TagResolver) {
     }
 
     private fun resolveTagDeclarationForDefinition(tag : String) : KSDeclaration?{
-        return tagResolver.resolveKSDeclaration(tag) ?: tagResolver.resolveKSPropertyDeclaration(tag)
+        return tagResolver.resolveKSDeclaration(tag) ?:
+        tagResolver.resolveKSDeclaration("${tag}_Expect") ?:
+        tagResolver.resolveKSDeclaration("${tag}_Actual") ?:
+        tagResolver.resolveKSPropertyDeclaration(tag) ?:
+        tagResolver.resolveKSPropertyDeclaration("${tag}_Expect") ?:
+        tagResolver.resolveKSPropertyDeclaration("${tag}_Actual")
     }
 
     private fun extractMetaDefinitionValues(a: KSAnnotation): MetaDefinitionAnnotationData? {
