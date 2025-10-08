@@ -88,7 +88,7 @@ class KoinConfigChecker(val logger: KSPLogger, val tagResolver: TagResolver) {
         val definitionTypes = definitions.associateBy { it.value }
         val scopes = definitions.filter { it.scope != null }.associateBy { it.scope!! }
         val binds = definitions.filter { !it.binds.isNullOrEmpty() }.flatMap { def ->
-            val t = if (def.qualifier == null) def.binds!! else def.binds!!.map { b -> TagFactory.createTagForQualifier(b,def) }
+            val t = if (def.qualifier.isNullOrEmpty()) def.binds!! else def.binds!!.map { b -> TagFactory.createTagForQualifier(b,def) }
             t.map { it to def }
         }.toMap()
         allLocalDefinitions = ((definitionTypes + scopes + binds) as MutableMap<String, MetaDefinitionData>)
